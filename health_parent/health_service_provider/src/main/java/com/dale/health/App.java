@@ -52,6 +52,10 @@ public class App {
         return new DataSourceTransactionManager(dataSource);
     }
 
+    public  void  pri() {
+        System.out.println("jajaj");
+    }
+
     @Bean
     public FreeMarkerConfigurer freeMarkerConfigurer() {
         FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
