@@ -1,0 +1,43 @@
+server:
+  port: 81
+
+spring:
+  aop:
+    proxy-target-class: true
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/health?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    username: root
+    password: 980815
+
+  redis:
+    host: 192.168.10.100
+    port: 6379 #端口号
+    jedis:
+      pool:
+        max-idle: 6    #最大空闲数
+        max-active: 10 #最大连接数
+        min-idle: 2    #最小空闲数
+    timeout: 2000   #连接超时
+
+dubbo:
+  application:
+    name: health_service_provider
+  registry:
+    address: zookeeper://192.168.10.100:2181
+  protocol:
+    name: dubbo
+    port: 20887
+  #scan: com.dale.health.service
+
+mybatis:
+  type-aliases-package: com.dale.health.dao
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+
+templateLoaderPath: /WEB-INF/ftl/
+defaultEncoding: UTF-8

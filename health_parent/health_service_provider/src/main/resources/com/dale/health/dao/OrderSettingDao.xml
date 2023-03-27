@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dale.health.dao.OrderSettingDao">
+
+
+    <insert id="insertOrder">
+        insert into t_ordersetting
+        (orderDate, number, reservations)
+        values
+        (#{orderDate}, #{number}, #{reservations});
+    </insert>
+
+    <update id="updateOrderByDate">
+        update t_ordersetting
+        set number = #{number}
+        where orderDate = #{date};
+    </update>
+
+    <update id="updateNumberByDate">
+        update t_ordersetting
+        set number = #{number}
+        where orderDate = #{date};
+    </update>
+
+    <select id="countOrderByDate" resultType="java.lang.Integer">
+        select count(*)
+        from t_ordersetting
+        where orderDate = #{date};
+    </select>
+
+    <select id="getOrderSettingByMonth" resultType="com.dale.health.pojo.OrderSetting">
+        select *
+        from t_ordersetting
+        where YEAR(orderDate) = #{year} and MONTH(orderDate) = #{date};
+    </select>
+
+    <select id="countOrderByDate2" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM t_ordersetting
+        WHERE orderDate = #{date}
+    </select>
+
+    <select id="selectByOrderDate" resultType="com.dale.health.pojo.OrderSetting">
+        select *
+        from t_ordersetting
+        where orderDate = #{date};
+    </select>
+
+    <update id="editReservationsByOrderDate" parameterType="com.dale.health.pojo.OrderSetting">
+        update t_ordersetting set reservations = #{reservations} where orderDate = #{orderDate}
+    </update>
+
+</mapper>
